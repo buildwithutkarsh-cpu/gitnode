@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+'use client';
+
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 /**
  * Hook for managing debounced values (useful for search inputs)
@@ -82,7 +84,7 @@ export const useLocalStorage = <T,>(key: string, initialValue: T) => {
  * Hook for handling click-outside detection
  */
 export const useClickOutside = (callback: () => void) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -159,5 +161,3 @@ export const useAsync = <T,>(
 
   return { execute, status, data, error };
 };
-
-import React from 'react';

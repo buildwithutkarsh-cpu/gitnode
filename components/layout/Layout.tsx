@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Navbar } from '@/components/layout/Navbar';
+import { Navbar } from '@/components/layout/NavBar';
 import { Footer } from '@/components/layout/Footer';
 
 interface LayoutProps {
