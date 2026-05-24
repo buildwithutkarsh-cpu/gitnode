@@ -1,0 +1,30 @@
+{
+  "name": "gitnode",
+  "version": "1.0.0",
+  "description": "GITNODE - A brutalist GitHub alternative",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "next": "^14.2.0",
+    "typescript": "^5.3.3",
+    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.32",
+    "framer-motion": "^10.16.19",
+    "lucide-react": "^0.344.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/node": "^20.10.4",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^14.2.0"
+  }
+}

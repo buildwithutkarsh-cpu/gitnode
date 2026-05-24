@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #FFFEF0;
+  color: #0A0A0A;
+  font-family: 'IBM Plex Mono', 'Space Mono', monospace;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  font-family: 'Arial Black', sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 7vw, 4rem);
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 5vw, 2rem);
+}
+
+p {
+  margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Links */
+a {
+  color: #0A0A0A;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: border-color 150ms linear;
+}
+
+a:hover {
+  border-bottom-color: #FFE600;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFEF0;
+  border: 1px solid #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0A0A0A;
+  border: 1px solid #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFE600;
+}
+
+/* Selection styles */
+::selection {
+  background-color: #FFE600;
+  color: #0A0A0A;
+}
+
+/* Brutalist utility classes */
+.brutal-border {
+  border: 3px solid #0A0A0A;
+}
+
+.brutal-border-2 {
+  border: 2px solid #0A0A0A;
+}
+
+.brutal-border-yellow {
+  border: 3px solid #FFE600;
+}
+
+.brutal-border-red {
+  border: 3px solid #FF2D00;
+}
+
+.brutal-border-green {
+  border: 3px solid #39FF14;
+}
+
+.brutal-hover {
+  transition: all 150ms linear;
+}
+
+.brutal-hover:hover {
+  background-color: #0A0A0A;
+  color: #FFFEF0;
+  border-color: #FFFEF0;
+}
+
+.brutal-invert {
+  transition: all 150ms linear;
+}
+
+.brutal-invert:hover {
+  background-color: #FFE600;
+  color: #0A0A0A;
+  border-color: #0A0A0A;
+}
+
+.invert-on-hover {
+  transition: all 150ms linear;
+}
+
+.invert-on-hover:hover {
+  filter: invert(1);
+}
+
+/* Monospace sections */
+.mono-text {
+  font-family: 'IBM Plex Mono', 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* Terminal-style background */
+.terminal-bg {
+  background-color: #111111;
+  color: #39FF14;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Dense grid layouts */
+.grid-dense {
+  display: grid;
+  gap: 0;
+  border: 3px solid #0A0A0A;
+}
+
+/* Focus styles for accessibility */
+:focus {
+  outline: 3px solid #0A0A0A;
+  outline-offset: -3px;
+}
+
+button:focus,
+a:focus,
+input:focus {
+  outline: 3px solid #0A0A0A;
+  outline-offset: -3px;
+}
+
+/* Smooth animations for interactions */
+.transition-brutal {
+  transition: all 150ms cubic-bezier(0.3, 0, 0.7, 1);
+}
+
+/* No-animation class for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
