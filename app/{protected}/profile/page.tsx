@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Layout } from '@/components/layout/Layout';
-import { ContributionGraph } from '@/components/profile/ContributionGraph';
+import { ContributionGraph } from '@/components/user/ContributionGraph';
 import { RepoCard } from '@/components/repository/RepoCard';
 import { StatCounter } from '@/components/ui/StatCounter';
 import { BrutalistButton } from '@/components/ui/BrutalistButton';

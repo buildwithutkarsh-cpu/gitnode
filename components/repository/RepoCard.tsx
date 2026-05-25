@@ -1,81 +1,82 @@
-'use client';
+// components/ui/RepoCard.tsx
 
-import React from 'react';
-import Link from 'next/link';
-import { Star, GitFork, Lock } from 'lucide-react';
-import { Repository } from '@/types';
+import Link from "next/link";
+import type { RepositoryWithMeta } from "@/lib/db/repositories/repository.repository";
 
 interface RepoCardProps {
-  repo: Partial<Repository>;
-  variant?: 'default' | 'featured';
+  repo: RepositoryWithMeta;
+  showOwner?: boolean;
 }
 
-export const RepoCard: React.FC<RepoCardProps> = ({
-  repo,
-  variant = 'default',
-}) => {
-  const borderVariant = {
-    default: 'border-3 border-black',
-    featured:
-      'border-t-4 border-r-3 border-b-3 border-l-3 border-t-yellow-400 border-r-black border-b-black border-l-black',
-  };
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: "#3178c6",
+  JavaScript: "#f7df1e",
+  Python: "#3572A5",
+  Rust: "#dea584",
+  Go: "#00ADD8",
+  "C++": "#f34b7d",
+  Ruby: "#701516",
+  Java: "#b07219",
+};
+
+export function RepoCard({ repo, showOwner = false }: RepoCardProps) {
+  const langColor = repo.language
+    ? (LANGUAGE_COLORS[repo.language] ?? "#6b7280")
+    : null;
 
   return (
-    <Link href={repo.url || '#'}>
-      <div
-        className={`
-          p-4 bg-white transition-brutal cursor-pointer group
-          hover:bg-black hover:text-white
-          ${borderVariant[variant]}
-        `}
-      >
-        {/* Header */}
-        <div className="flex items-start justify-between gap-2 mb-3">
-          <h3 className="text-base font-bold uppercase font-bold tracking-tight group-hover:text-yellow-400 transition-brutal">
+    <Link
+      href={`/repositories/${repo.owner.username}/${repo.slug}`}
+      className="block border-b-3 border-black p-5 hover:bg-[#FFFF00] transition-colors group"
+    >
+      {/* ─── Title Row ─────────────────────────────────────────── */}
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-sm font-black truncate group-hover:text-black">
+            {showOwner && (
+              <span className="text-gray-500 font-normal">
+                {repo.owner.username}/
+              </span>
+            )}
             {repo.name}
-          </h3>
-          {repo.isPrivate && (
-            <div className="flex-shrink-0 p-1 border-2 border-current">
-              <Lock size={14} />
-            </div>
+          </p>
+          {repo.description && (
+            <p className="text-xs text-gray-500 mt-0.5 line-clamp-2 font-mono">
+              {repo.description}
+            </p>
           )}
         </div>
+        <span
+          className={`flex-shrink-0 text-[10px] font-bold border px-2 py-0.5 ${
+            repo.isPrivate
+              ? "border-red-400 text-red-600"
+              : "border-gray-300 text-gray-500"
+          }`}
+        >
+          {repo.isPrivate ? "PRIVATE" : "PUBLIC"}
+        </span>
+      </div>
 
-        {/* Description */}
-        <p className="text-xs mb-3 opacity-75 group-hover:opacity-100 transition-brutal">
-          {repo.description || 'No description provided'}
-        </p>
-
-        {/* Meta Information */}
-        <div className="flex items-center gap-4 mb-3 text-xs font-mono">
-          {repo.language && (
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-current border border-current"></div>
-              <span className="uppercase">{repo.language}</span>
-            </div>
-          )}
-          {repo.updated && (
-            <span className="text-xs opacity-60">Updated {repo.updated}</span>
-          )}
-        </div>
-
-        {/* Stats */}
-        <div className="flex items-center gap-4 pt-3 border-t-2 border-current">
-          <div className="flex items-center gap-1 text-xs font-bold uppercase">
-            <Star size={14} />
-            <span>{repo.stars || 0}</span>
-          </div>
-          <div className="flex items-center gap-1 text-xs font-bold uppercase">
-            <GitFork size={14} />
-            <span>{repo.forks || 0}</span>
-          </div>
-          {repo.isFork && (
-            <span className="text-xs font-bold uppercase opacity-60">FORKED</span>
-          )}
-        </div>
+      {/* ─── Stats Row ─────────────────────────────────────────── */}
+      <div className="flex items-center gap-4 mt-3 text-xs font-mono text-gray-500">
+        {langColor && repo.language && (
+          <span className="flex items-center gap-1">
+            <span
+              className="inline-block w-2.5 h-2.5 rounded-full border border-black/10"
+              style={{ backgroundColor: langColor }}
+            />
+            {repo.language}
+          </span>
+        )}
+        <span>★ {repo._count.stars}</span>
+        <span>⚑ {repo._count.issues}</span>
+        <span className="ml-auto text-gray-300 text-[10px]">
+          {new Date(repo.updatedAt).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          })}
+        </span>
       </div>
     </Link>
   );
-};
-
-export default RepoCard;
+}

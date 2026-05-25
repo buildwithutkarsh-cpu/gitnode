@@ -17,7 +17,7 @@ export { IssueCard } from '@/components/repository/IssueCard';
 export { ActivityFeed } from '@/components/dashboard/ActivityFeed';
 
 // Profile Components
-export { ContributionGraph } from '@/components/profile/ContributionGraph';
+export { ContributionGraph } from '@/components/user/ContributionGraph';
 
 // Types
 export type {

@@ -1,34 +1,39 @@
-import type { Metadata } from 'next';
-import './globals.css';
+// app/layout.tsx
+
+import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
-  title: 'GITNODE - Brutalist GitHub Alternative',
+  title: {
+    default: "GitNode",
+    template: "%s | GitNode",
+  },
   description:
-    'Where code lives and breathes. A raw, unfiltered GitHub alternative built for developers who mean business.',
-  keywords: [
-    'git',
-    'github',
-    'version control',
-    'open source',
-    'brutalism',
-    'developer',
-  ],
+    "GitNode — The open-source, brutalist alternative to GitHub. Raw. Fast. Yours.",
+  keywords: ["git", "repository", "open source", "code hosting"],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
-    <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body suppressHydrationWarning>{children}</body>
+    <html lang="en" className={jetbrainsMono.variable}>
+      <body className="bg-white font-mono antialiased">
+        <SessionProvider session={session}>{children}</SessionProvider>
+      </body>
     </html>
   );
 }

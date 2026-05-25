@@ -1,4 +1,4 @@
-````md
+````
 # GitHub Repository Platform
 
 A modern GitHub-inspired repository exploration platform built with Next.js, TypeScript, and Tailwind CSS.  
