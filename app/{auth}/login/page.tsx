@@ -65,7 +65,7 @@ export default async function LoginPage() {
           </div>
 
           <p className="text-xs text-gray-500 mt-4 text-center font-mono">
-            By signing in, you agree to GitNode's Terms of Use.
+            By signing in, you agree to GitNode&apos;s Terms of Use.
           </p>
         </div>
 

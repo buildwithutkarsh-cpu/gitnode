@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Navbar } from "@/components/layout/NavBar";
+import { Navbar } from "@/components/layout/Navbar";
 
 export default async function ProtectedLayout({
   children,

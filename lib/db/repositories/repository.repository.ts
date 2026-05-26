@@ -1,4 +1,5 @@
 // lib/db/repositories/repository.repository.ts
+
 import { db } from "@/lib/db";
 import type { Prisma, Repository } from "@prisma/client";
 

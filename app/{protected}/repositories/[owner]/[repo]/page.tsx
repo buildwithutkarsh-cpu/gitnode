@@ -110,7 +110,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
         <div className="lg:col-span-2 p-6">
           <TerminalWindow title={`${owner}/${repoSlug}`}>
             <p className="text-green-400">$ git clone gitnode.io/{owner}/{repoSlug}.git</p>
-            <p className="text-gray-400 mt-1">Cloning into '{repoSlug}'...</p>
+            <p className="text-gray-400 mt-1">Cloning into &apos;{repoSlug}&apos;...</p>
             <p className="text-gray-400">remote: Enumerating objects...</p>
             <p className="text-gray-400">Receiving objects: 100% done.</p>
             <p className="text-[#FFFF00] mt-2">✓ Repository ready.</p>
